@@ -1,0 +1,14 @@
+---
+server.name: kibana
+server.host: 0.0.0.0
+server.publicBaseUrl: "https://0.0.0.0:5601"
+
+# Elasticsearch settings
+elasticsearch.hosts: [ "https://es-master:9200" ]
+elasticsearch.ssl.certificateAuthorities: [ "${CONFIG_DIR}/certs/ca/ca.crt" ]
+
+# SSL settings
+server.ssl.enabled: true
+server.ssl.certificate: "${CONFIG_DIR}/certs/kibana/kibana.crt"
+server.ssl.key: "${CONFIG_DIR}/certs/kibana/kibana.key"
+server.ssl.certificateAuthorities: [ "${CONFIG_DIR}/certs/ca/ca.crt" ]

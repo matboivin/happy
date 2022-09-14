@@ -9,8 +9,9 @@ load_dotenv()
 
 elasticsearch: AsyncElasticsearch = AsyncElasticsearch(
     hosts=[os.getenv("ELASTICSEARCH_HOSTS")],
-    http_auth=(
+    basic_auth=(
         os.getenv("ELASTICSEARCH_USERNAME"),
         os.getenv("ELASTICSEARCH_PASSWORD"),
     ),
+    verify_certs=False,
 )

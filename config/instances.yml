@@ -1,0 +1,13 @@
+instances:
+  - name: es-master
+    dns:
+      - es-master
+      - localhost
+    ip:
+      - "127.0.0.1"
+  - name: kibana
+    dns:
+      - kibana
+      - localhost
+    ip:
+      - "127.0.0.1"

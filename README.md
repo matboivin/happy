@@ -1,1 +1,3 @@
-# Happy ᕕ( ՞ ᗜ ՞ )ᕗ
+# Happy ᕕ( ՞ ᗜ ՞ )ᕗ
+
+A basic `FastAPI` application using ElasticSearch.
