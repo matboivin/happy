@@ -82,11 +82,16 @@ services:
         condition: service_healthy
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: happy
     hostname: happy
     ports:
       - 8000:8000
+    volumes:
+      - ./scripts/docker_entrypoint.sh:/app/docker_entrypoint.sh:ro
+      - ./pyproject.toml:/app/pyproject.toml:ro
+      - ./README.md:/app/README.md:ro
+      - ./happy:/app/happy:ro
     env_file: .env
 
 volumes:

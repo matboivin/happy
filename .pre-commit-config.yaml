@@ -38,7 +38,7 @@ repos:
       language: system
       args: [
         '--ignore=E722,E126',
-        '--max-line-length=80',
+        '--max-line-length=79',
         '--exclude=*init*'
       ]
       files: \.py$

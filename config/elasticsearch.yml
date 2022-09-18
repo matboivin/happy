@@ -6,14 +6,12 @@ http.host: 0.0.0.0
 xpack.security.enabled: true
 
 # HTTP security setttings
-# This is used for client server ssl/tls communications (e.g. browser to kibana)
 xpack.security.http.ssl.enabled: true
 xpack.security.http.ssl.key: certs/es-master/es-master.key
 xpack.security.http.ssl.certificate: certs/es-master/es-master.crt
 xpack.security.http.ssl.certificate_authorities: certs/ca/ca.crt
 
-# transport security settings
-# This is mostly used for inter-node communications between parts of the ELK stack
+# Transport security settings
 xpack.security.transport.ssl.enabled: true
 xpack.security.transport.ssl.key: certs/es-master/es-master.key
 xpack.security.transport.ssl.certificate: certs/es-master/es-master.crt

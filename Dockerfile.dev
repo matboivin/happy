@@ -13,9 +13,4 @@ ENV PATH="/root/.local/bin:$PATH"
 
 WORKDIR /app
 
-COPY pyproject.toml README.md ./
-COPY happy happy/
-
-RUN poetry install
-
-ENTRYPOINT ["poetry", "run", "uvicorn", "happy.main:app"]
+ENTRYPOINT ["sh", "docker_entrypoint.sh"]
