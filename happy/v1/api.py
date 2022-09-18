@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter
 
-from .endpoints import users
+from happy.v1.endpoints import users
 
 router: APIRouter = APIRouter()
 

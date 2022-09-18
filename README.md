@@ -6,8 +6,8 @@ A basic `FastAPI` application using ElasticSearch.
 
 ## Requirements
 
-* GNU make
-* Docker and Docker compose
+- GNU make
+- Docker and Docker compose
 
 ## Installation
 
