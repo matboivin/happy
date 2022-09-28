@@ -69,6 +69,38 @@ set_kibana_system_user()
     done;
 }
 
+create_elasticsearch_index_role()
+{
+    echo "Creating index privileges role";
+
+    curl -X POST --cacert $CA_CERT \
+        -u elastic:$ELASTICSEARCH_PASSWORD \
+        -H "Content-Type: application/json" \
+        $ELASTICSEARCH_URL/_security/role/happy_admin?pretty -d"
+        {
+            \"indices\": [
+            {
+                \"names\": [\"users\"],
+                \"privileges\": [\"all\"]
+            }]
+        }";
+}
+
+create_elasticsearch_regular_user()
+{
+    echo "Creating regular user with admin privileges";
+
+    curl -X POST --cacert $CA_CERT \
+        -u elastic:$ELASTICSEARCH_PASSWORD \
+        -H "Content-Type: application/json" \
+        $ELASTICSEARCH_URL/_security/user/$ELASTICSEARCH_USERNAME -d"
+        {
+            \"password\": \"${ELASTICSEARCH_PASSWORD}\",
+            \"enabled\": true,
+            \"roles\": [\"kibana_admin\", \"kibana_system\", \"happy_admin\"]
+        }";
+}
+
 check_environment_variables
 create_self_signed_ca
 create_certificates
@@ -77,6 +109,8 @@ echo "Waiting for Elasticsearch availability";
 until curl -s --cacert $CA_CERT $ELASTICSEARCH_URL | grep -q "missing authentication credentials"; do sleep 10; done;
 
 set_kibana_system_user
+create_elasticsearch_index_role
+create_elasticsearch_regular_user
 
 echo "Waiting for Kibana availability";
 until curl -s --insecure -I $KIBANA_URL | grep -q "HTTP/1.1 302 Found"; do sleep 10; done;
