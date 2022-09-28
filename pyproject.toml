@@ -14,10 +14,12 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
+coloredlogs = "^15.0.1"
 elasticsearch = {extras = ["async"], version = "^8.4.1"}
 fastapi = "^0.83.0"
 python-dotenv = "^0.21.0"
 uvicorn = "^0.18.3"
+verboselogs = "^1.7"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.20.0"

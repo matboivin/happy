@@ -2,11 +2,13 @@
 
 from typing import Any, List
 
+from elastic_transport import ConnectionTimeout
 from fastapi import FastAPI
 
+from happy.api.api import router as api_router
 from happy.core.config import tags_metadata
 from happy.core.database import elasticsearch
-from happy.v1.api import router as api_router
+from happy.core.logger import api_logger as logger
 
 app: FastAPI = FastAPI(
     title="happy",
@@ -22,15 +24,21 @@ async def app_startup() -> None:
     """Create indices on startup."""
     indices: List[str] = ["users"]
 
-    for index in indices:
-        if not (await elasticsearch.indices.exists(index=index)):
-            await elasticsearch.indices.create(index=index)
+    try:
+        for index in indices:
+            if not await elasticsearch.indices.exists(index=index):
+                await elasticsearch.indices.create(index=index)
+    except ConnectionTimeout as err:
+        logger.error(err)
 
 
 @app.on_event("shutdown")
 async def app_shutdown() -> None:
     """Close cluster connections on shutdown."""
-    await elasticsearch.close()
+    try:
+        await elasticsearch.close()
+    except ConnectionTimeout as err:
+        logger.error(err)
 
 
 @app.get("/")
