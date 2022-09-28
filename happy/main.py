@@ -39,9 +39,3 @@ async def app_shutdown() -> None:
         await elasticsearch.close()
     except ConnectionTimeout as err:
         logger.error(err)
-
-
-@app.get("/")
-async def get_cluster_health() -> Any:
-    """Returns the cluster health."""
-    return await elasticsearch.cluster.health()
