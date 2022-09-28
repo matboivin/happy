@@ -22,10 +22,10 @@ uvicorn = "^0.18.3"
 verboselogs = "^1.7"
 
 [tool.poetry.dev-dependencies]
+mdformat = "^0.7.16"
 pre-commit = "^2.20.0"
 pycodestyle = "^2.9.1"
 rich = "^12.5.1"
-mdformat = "^0.7.16"
 
 [tool.black]
 line-length = 79

@@ -4,7 +4,13 @@
 
 A basic `FastAPI` application using ElasticSearch.
 
-## Requirements
+1. [Prerequisites](#prerequisites)
+2. [Installation](#installation)
+3. [Environment variables](#environment-variables)
+4. [Usage](#usage)
+5. [Development](#development)
+
+## Prerequisites
 
 - GNU make
 - Docker and Docker compose
@@ -15,16 +21,36 @@ Clone the repository and change it to your working directory.
 
 Set the environment variables in a `.env` file. An example file is located at the root of the repository.
 
+```bash
+# .env or .dev.env
+ENV=
+
+STACK_VERSION=
+
+ELASTICSEARCH_HOST=
+ELASTICSEARCH_PORT=
+ELASTICSEARCH_USERNAME=
+ELASTICSEARCH_PASSWORD=
+KIBANA_PASSWORD=
+```
+
 ## Usage
 
 ```console
 $ make ENV=production up-build
 ```
 
-Development is the default environment:
+## Development
+
+### Prerequisites
+
+- [poetry](https://python-poetry.org)
+
+## Usage
 
 ```console
+# Development is the default environment
 $ make up-build
 ```
 
-In development, the source files are passed to the API container as volumes. The server will restart every time a file is edited.
+In development, the source files are passed to the `Happy` container as volumes. The server will restart every time a file is edited.
